@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\rkali\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\rkali\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_TaskerTasks.-252012994.00" t="ExcludeRecursive" />
+    <e p="C:\Users\rkali\AppData\Roaming\JetBrains\Rider2020.2\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\rkali\AppData\Roaming\JetBrains\Rider2020.2\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\rkali\AppData\Roaming\JetBrains\Rider2020.2\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\rkali\RiderProjects\TaskerTasks" t="IncludeFlat">
+      <e p="Configuration" t="Include">
+        <e p="appsettings.CoreConfigurations.json" t="Include" />
+      </e>
+      <e p="DataAccess" t="Include" />
+      <e p="DataAccess.Domain" t="IncludeRecursive">
+        <e p="ApplicationContext.cs" t="Include" />
+        <e p="ApplicationContextFactory.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DataAccess.Domain.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="DataAccess.Domain.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="DataAccess.Providers" t="IncludeRecursive">
+        <e p="Abstract" t="Include">
+          <e p="Base" t="Include">
+            <e p="EntityProvider.cs" t="Include" />
+            <e p="IProvider.cs" t="Include" />
+          </e>
+          <e p="IBaseTaskProvider.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DataAccess.Providers.csproj" t="IncludeRecursive" />
+        <e p="EntityBaseTaskProvider.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="DataAccess.Providers.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Models" t="IncludeRecursive">
+        <e p="Base" t="Include">
+          <e p="Entity.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Models.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Models.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="System" t="Include">
+          <e p="BaseTask.cs" t="Include" />
+          <e p="SiteConfiguration.cs" t="Include" />
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Services" t="Include" />
+      <e p="Services.Business" t="IncludeRecursive">
+        <e p="AvisoService.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Services.Business.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Services.Business.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="TaskerTasks" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="AvisoController.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="TaskerTasks.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="TaskerTasks.csproj" t="IncludeRecursive" />
+        <e p="WebDriver" t="Include">
+          <e p="chromedriver.exe" t="Include" />
+        </e>
+      </e>
+      <e p="TaskerTasks.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
