@@ -1,10 +1,12 @@
 ﻿using DataAccess.Providers.Abstract;
 using DataAccess.Providers.Abstract.Base;
 using DataSource;
-using Models.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Models.System;
 
 namespace DataAccess.Providers
 {
@@ -27,6 +29,19 @@ namespace DataAccess.Providers
                 }
             }
             await AddRange(newTasks);
+        }
+
+        public async Task<bool> CheckByTaskId(int id)
+        {
+            return await _context.Tasks.AnyAsync(task => task.TaskId == id);
+        }
+
+        public async Task<List<BaseTask>> GetAllExtensionsNull()
+        {
+            return await _context.Tasks.Where(t => t.Description == null &&
+                                                   t.CreationDate == null &&
+                                                   t.WorkTime == 0 &&
+                                                   t.CheckTime == 0).ToListAsync();
         }
     }
 }

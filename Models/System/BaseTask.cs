@@ -1,7 +1,7 @@
-﻿using Models.Base;
-using System;
+﻿using System;
+using Models.Base;
 
-namespace Models.Models
+namespace Models.System
 {
     public class BaseTask : Entity, IDisposable
     {
@@ -14,9 +14,9 @@ namespace Models.Models
         public string Url { get; set; }
         public string AuthorName { get; set; }
         public bool Status { get; set; }
-        public int WorkTime { get; set; }
-        public int CheckTime { get; set; }
-
+        public int WorkTime { get; set; } = 0;
+        public int CheckTime { get; set; } = 0;
+        public string WorkCount { get; set; }
         public void Dispose()
         {
             GC.SuppressFinalize(this);

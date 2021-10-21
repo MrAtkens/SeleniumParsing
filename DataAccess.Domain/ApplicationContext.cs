@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Models.Models;
+using Models.System;
 
 namespace DataSource
 {
@@ -26,8 +26,7 @@ namespace DataSource
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BaseTask>()
-               .HasIndex(a => a.TaskId)
-               .IsUnique();
+               .HasIndex(a => a.TaskId);
         }
     }
 }

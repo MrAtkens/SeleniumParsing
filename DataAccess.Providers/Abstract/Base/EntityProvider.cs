@@ -78,6 +78,12 @@ namespace DataAccess.Providers.Abstract.Base
             await _context.SaveChangesAsync();
         }
 
+        public virtual async Task EditRange(IEnumerable<TEntity> edited)
+        {
+            _dbSet.UpdateRange(edited);
+            await _context.SaveChangesAsync();
+        }
+
         public virtual async Task Remove(TEntity removed)
         {
             _dbSet.Remove(removed);

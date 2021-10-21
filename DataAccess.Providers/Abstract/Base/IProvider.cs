@@ -1,5 +1,4 @@
-﻿using Models.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -17,6 +16,7 @@ namespace DataAccess.Providers.Abstract.Base
         Task Add(TEntity added);
         Task AddRange(IEnumerable<TEntity> added);
         Task Edit(TEntity edited);
+        Task EditRange(IEnumerable<TEntity> edited);
         Task Remove(TEntity removed);
     }
 

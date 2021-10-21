@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Models.Models;
 using Models.System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -37,7 +36,14 @@ namespace TaskerTasks.Controllers
         [HttpGet]
         public async Task InitialParse()
         {
-            await _avisoService.ParseTaskFromAuthorization(siteConfiguration);
+            await _avisoService.ParseAllTasks(siteConfiguration);
+            await _avisoService.ParseOnlyExtensions(siteConfiguration);
+        }
+
+        [HttpGet]
+        public async Task ParseExtensions()
+        {
+            await _avisoService.ParseOnlyExtensions(siteConfiguration);
         }
 
         [HttpGet]
