@@ -21,12 +21,13 @@ namespace DataSource
                 
         }
 
-        public DbSet<BaseTask> Tasks { get; set; }
+        public DbSet<SimpleTask> Tasks { get; set; }
+        public DbSet<WorkingTask> WorkingTasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BaseTask>()
-               .HasIndex(a => a.TaskId);
+            modelBuilder.Entity<SimpleTask>()
+                .HasIndex(a => a.TaskId);
         }
     }
 }

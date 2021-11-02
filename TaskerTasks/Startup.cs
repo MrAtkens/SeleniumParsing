@@ -14,7 +14,7 @@ namespace TaskerTasks
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
         public Startup()
         {
             Configuration = new ConfigurationBuilder()
@@ -30,11 +30,12 @@ namespace TaskerTasks
             options => options.UseSqlServer(
                 Configuration.GetConnectionString("DevConnection")));
             //DataAccess Providers
-            services.AddScoped<IBaseTaskProvider, EntityBaseTaskProvider>();
+            services.AddScoped<ITaskProvider, EntityTaskProvider>();
 
 
             //Services
             services.AddTransient<AvisoService>();
+            services.AddTransient<AdvigoService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

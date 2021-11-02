@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Models.System;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using Services.Business;
 
 namespace TaskerTasks.Controllers
@@ -15,39 +13,40 @@ namespace TaskerTasks.Controllers
     public class AvisoController : ControllerBase
     {
         private readonly AvisoService _avisoService;
-        private SiteConfiguration siteConfiguration;
        public AvisoController(AvisoService avisoService)
        {
             _avisoService = avisoService;
-            IConfiguration config = new ConfigurationBuilder()
-                       .AddJsonFile("appsettings.CoreConfigurations.json")
-                       .Build();
-
-            IConfigurationSection configurationSection = config.GetSection("Sites").GetSection("Aviso");
-            siteConfiguration = new SiteConfiguration()
-            {
-                Url = configurationSection.GetSection("Url").Value,
-                AuthUrl = configurationSection.GetSection("AuthUrl").Value,
-                Username = configurationSection.GetSection("Username").Value,
-                Password = configurationSection.GetSection("Password").Value
-            };
-        }
+       }
 
         [HttpGet]
         public async Task InitialParse()
         {
-            await _avisoService.ParseAllTasks(siteConfiguration);
-            await _avisoService.ParseOnlyExtensions(siteConfiguration);
+            await _avisoService.ParseAllTasks();
+            await _avisoService.ParseOnlyExtensions();
         }
 
         [HttpGet]
         public async Task ParseExtensions()
         {
-            await _avisoService.ParseOnlyExtensions(siteConfiguration);
+            await _avisoService.ParseOnlyExtensions();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> StartTask(int id)
+        {
+            try
+            {
+                var answer = await _avisoService.StartTask(id);
+                return Ok(answer);
+            }
+            catch (Exception ex)
+            {
+                return Forbid();
+            }
         }
 
         [HttpGet]
-        public async Task<List<BaseTask>> Get()
+        public async Task<List<SimpleTask>> Get()
         {
             return await _avisoService.GetAllTasks();
         }
@@ -57,5 +56,7 @@ namespace TaskerTasks.Controllers
         {
             return await _avisoService.GetCount();
         }
+        
+        
     }
 }

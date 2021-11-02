@@ -3,31 +3,50 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Models.System;
 using OpenQA.Selenium.Support.UI;
 using System.Threading.Tasks;
 using Helpers;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace Services.Business
 {
     public class AvisoService
     {
-        private readonly IBaseTaskProvider _taskProvider;
+        private readonly ITaskProvider _taskProvider;
+        private readonly IWorkingTaskProvider _workingTaskProvider;
+        private static SiteConfiguration _siteConfiguration;
+        private const int SiteId = 3;
 
-        public AvisoService(IBaseTaskProvider taskProvider)
+        public AvisoService(ITaskProvider taskProvider, IWorkingTaskProvider workingTaskProvider)
         {
             _taskProvider = taskProvider;
+            _workingTaskProvider = workingTaskProvider;
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.CoreConfigurations.json")
+                .Build();
+
+            var configurationSection = config.GetSection("Sites").GetSection("Aviso");
+            _siteConfiguration = new SiteConfiguration()
+            {
+                Url = configurationSection.GetSection("Url").Value,
+                AuthUrl = configurationSection.GetSection("AuthUrl").Value,
+                TasksUrl = configurationSection.GetSection("TasksUrl").Value,
+                TaskUrl = configurationSection.GetSection("TaskUrl").Value,
+                Username = configurationSection.GetSection("Username").Value,
+                Password = configurationSection.GetSection("Password").Value
+            };
         }
 
-        public async Task ParseAllTasks(SiteConfiguration siteConfiguration)
+        public async System.Threading.Tasks.Task ParseAllTasks()
         {
             //Initialize webdriver and authorize 
-            var driver = Authorize(siteConfiguration);
+            var driver = Authorize();
             //Navigate to footer of page count to get all in one time without get ban
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            var navigationEnd = wait.Until(e => e.FindElement(By.Id("navi-end")));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(8);
+            var navigationEnd = driver.FindElement(By.Id("navi-end"));
             var href = navigationEnd.GetAttribute("href");
             var pageCountSplit = href.Split("#page-");
             var pageCount = int.Parse(pageCountSplit[1]);
@@ -35,7 +54,7 @@ namespace Services.Business
             for (var i = 1; i < pageCount; i++)
             {
                 var waitTask = new WebDriverWait(driver, TimeSpan.FromSeconds(7));
-                driver.Navigate().GoToUrl("https://aviso.bz/work-task?plagin=" + i);
+                driver.Navigate().GoToUrl(_siteConfiguration.TasksUrl + i);
                 var parsedTasks = waitTask.Until(e => e.FindElement(By.Id("work-task")));
                 IList<IWebElement> elements = parsedTasks.FindElements(By.TagName("tr"));
                 //Parse tasks on one page and add range(30-35 tasks)
@@ -46,50 +65,81 @@ namespace Services.Business
             driver.Quit();
         }
 
-        public async Task ParseOnlyExtensions(SiteConfiguration siteConfiguration)
+        public async Task<string> StartTask(int id)
         {
-            var driver = Authorize(siteConfiguration);
+         
+                var driver = Authorize();
+                var task = await _taskProvider.GetByTaskId(id, SiteId);
+                driver.Navigate().GoToUrl(_siteConfiguration.TaskUrl + task.TaskId);
+                var button = driver.FindElement(By.Name("submit"));
+                button.Click();
+                await _workingTaskProvider.Add(new WorkingTask(task));
+                return task.Description;
+        }
+        
+        public async Task CompleteTask(int id, string answer)
+        {
+            var driver = Authorize();
+            var task = await _workingTaskProvider.GetByTaskId(id, SiteId);
+            driver.Navigate().GoToUrl(_siteConfiguration.TaskUrl + task.TaskId);
+            driver.FindElement(By.Name("ask_reply")).SendKeys(answer);
+            try
+            {
+                //Loading file if need
+                driver.FindElement(By.Id("file-load-patch")).SendKeys(answer);
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
+
+            var button = driver.FindElement(By.Name("submit"));
+            button.Click();
+            await _workingTaskProvider.Remove(task);
+        }
+
+        public async Task ParseOnlyExtensions()
+        {
+            var driver = Authorize();
             var tasks = await _taskProvider.GetAllExtensionsNull();
-            await ParseTasksExtensions(tasks, driver);
+            await ParseTasksExtensions(tasks, driver, _siteConfiguration);
             driver.Quit();
         }
 
         public async Task<int> GetCount()
         {
-            return await _taskProvider.GetCount();
+            return await _taskProvider.GetCountSiteId(SiteId);
         }
 
-        public async Task<List<BaseTask>> GetAllTasks()
+        public async Task<List<SimpleTask>> GetAllTasks()
         {
-            return await _taskProvider.GetAll();
+            return await _taskProvider.GetAllBySiteId(SiteId);
         }
 
-        private static WebDriver Authorize(SiteConfiguration siteConfiguration)
+        private static WebDriver Authorize()
         {
             WebDriver driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory);
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(siteConfiguration.AuthUrl);
+            driver.Navigate().GoToUrl(_siteConfiguration.AuthUrl);
             //Authorization
-            driver.FindElement(By.Name("username")).SendKeys(siteConfiguration.Username);
-            driver.FindElement(By.Name("password")).SendKeys(siteConfiguration.Password + Keys.Enter);
+            driver.FindElement(By.Name("username")).SendKeys(_siteConfiguration.Username);
+            driver.FindElement(By.Name("password")).SendKeys(_siteConfiguration.Password + Keys.Enter);
             return driver;
         }
         
-        [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH", MessageId = "type: System.Char[]")]
-        private async Task<List<BaseTask>> ParseTasks(IEnumerable<IWebElement> elements)
+        private async Task<List<SimpleTask>> ParseTasks(IEnumerable<IWebElement> elements)
         {
-            var tasks = new List<BaseTask>();
-            int count = 0;
+            var tasks = new List<SimpleTask>();
+            var count = 0;
             foreach (var e in elements)
             {
-                var task = new BaseTask();
+                var task = new SimpleTask();
                 try
                 {
                     var lines = e.Text.Split("\r\n");
                     var elementId = e.GetAttribute("id");
-                    
                     task.TaskId = int.Parse(elementId.Split("block-task").Last());
-                    if (!await _taskProvider.CheckByTaskId(task.TaskId))
+                    if (!await _taskProvider.CheckByTaskId(task.TaskId, SiteId))
                     {
                         //Title
                         task.Title = lines[0];
@@ -122,12 +172,15 @@ namespace Services.Business
                         var authorId = authorElement.GetAttribute("href");
                         task.AuthorName = authorElement.Text;
                         task.AuthorId = int.Parse(authorId.Split("/wall?uid=")[1]);
-                        var priceElement = e.FindElement(By.CssSelector("td:nth-child(3)"))
-                            .FindElement(By.TagName("span"));
-                        task.Price = priceElement.Text;
+                        var priceElementText = e.FindElement(By.CssSelector("td:nth-child(3)"))
+                            .FindElement(By.TagName("span")).Text;
+                        var priceLine = priceElementText.Split(" ");
+                        task.Price = float.Parse(priceLine[0]) + float.Parse(priceLine[2]) / 100;
                         task.Status = true;
-                        //Add to list and finalize task
+                        task.SiteId = SiteId;
+                        //Add to list
                         tasks.Add(task);
+                        task.Dispose();
                     }
                     else 
                         continue;
@@ -140,24 +193,23 @@ namespace Services.Business
                     Console.WriteLine(task.TaskId);
                     continue;
                 }
+                GC.Collect();
             }
             return tasks;
         }
 
-        private async Task ParseTasksExtensions(IEnumerable<BaseTask> tasks, IWebDriver driver)
+        private async System.Threading.Tasks.Task ParseTasksExtensions(IEnumerable<SimpleTask> tasks, IWebDriver driver, SiteConfiguration siteConfiguration)
         {
-            var count = 0;
-            var editedTasks = new List<BaseTask>();
+            var editedTasks = new List<SimpleTask>();
             foreach (var task in tasks)
             {
                 try
                 {
-                  driver.Navigate().GoToUrl("https://aviso.bz/work-task-read?adv=" + task.TaskId);
-                  IWebElement taskCompleteTimeElement = null;
+                  driver.Navigate().GoToUrl(siteConfiguration.TaskUrl + task.TaskId);
                   //Get elements(Url, CompleteTime, WorkCount, FullDescription, Created date)
                   try
                   {
-                      taskCompleteTimeElement = driver.FindElement(By.CssSelector("#contentwrapper > div:nth-child(14) > b > font"));
+                      var taskCompleteTimeElement = driver.FindElement(By.CssSelector("#contentwrapper > div:nth-child(14) > b > font"));
                       task.WorkTime = DateHelper.StringDateToInt(taskCompleteTimeElement.Text);
                   }
                   catch (Exception ex)
@@ -181,15 +233,11 @@ namespace Services.Business
                   if (editedTasks.Count == 30)
                   {
                       await _taskProvider.EditRange(editedTasks);
-                      editedTasks = new List<BaseTask>();
+                      editedTasks = new List<SimpleTask>();
                   }
                 }
                 catch (Exception ex)
                 {
-                    count++;
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(count);
-                    Console.WriteLine(task.TaskId);
                     task.Status = false;
                     editedTasks.Add(task);
                     continue;

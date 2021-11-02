@@ -31,11 +31,13 @@
             <e p="EntityProvider.cs" t="Include" />
             <e p="IProvider.cs" t="Include" />
           </e>
-          <e p="IBaseTaskProvider.cs" t="Include" />
+          <e p="ITaskProvider.cs" t="Include" />
+          <e p="IWorkingTaskProvider.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="DataAccess.Providers.csproj" t="IncludeRecursive" />
-        <e p="EntityBaseTaskProvider.cs" t="Include" />
+        <e p="EntityTaskProvider.cs" t="Include" />
+        <e p="EntityWorkingTaskProvider.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0" t="Include">
@@ -55,6 +57,7 @@
             </e>
           </e>
         </e>
+        <e p="WebDriverOptionsHelper.cs" t="Include" />
       </e>
       <e p="Models" t="IncludeRecursive">
         <e p="Base" t="Include">
@@ -71,12 +74,15 @@
         </e>
         <e p="System" t="Include">
           <e p="BaseTask.cs" t="Include" />
+          <e p="SimpleTask.cs" t="Include" />
           <e p="SiteConfiguration.cs" t="Include" />
+          <e p="WorkingTask.cs" t="Include" />
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="Services" t="Include" />
       <e p="Services.Business" t="IncludeRecursive">
+        <e p="AdvigoService.cs" t="Include" />
         <e p="AvisoService.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
@@ -93,6 +99,7 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
+          <e p="AdvigoController.cs" t="Include" />
           <e p="AvisoController.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -110,6 +117,7 @@
         <e p="TaskerTasks.csproj" t="IncludeRecursive" />
         <e p="WebDriver" t="Include">
           <e p="chromedriver.exe" t="Include" />
+          <e p="geckodriver.exe" t="Include" />
         </e>
       </e>
       <e p="TaskerTasks.sln" t="IncludeFlat" />

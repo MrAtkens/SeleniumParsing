@@ -6,6 +6,7 @@ namespace Helpers
     {
         //default 5 day to check
         public static int CheckTime = 7200;
+        public static int OneHour = 60;
         public static int StringDateToInt(string dateString)
         {
             switch (dateString)
