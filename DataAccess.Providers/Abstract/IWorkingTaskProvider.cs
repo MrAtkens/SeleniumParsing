@@ -10,5 +10,6 @@ namespace DataAccess.Providers.Abstract
     {
         Task<WorkingTask> GetByTaskId(int id, int siteId);
         Task<List<WorkingTask>> GetAllBySiteId(int siteId);
+        Task<bool> CheckByTaskId(int id, int siteId);
     }
 }

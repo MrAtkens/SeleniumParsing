@@ -28,5 +28,10 @@ namespace DataAccess.Providers
         {
             return await _context.WorkingTasks.FirstOrDefaultAsync(t => t.TaskId.Equals(id) && t.SiteId.Equals(siteId));
         }
+        
+        public async Task<bool> CheckByTaskId(int id, int siteId)
+        {
+            return await _context.WorkingTasks.AnyAsync(task => task.TaskId == id && task.SiteId == siteId);
+        }
     }
 }

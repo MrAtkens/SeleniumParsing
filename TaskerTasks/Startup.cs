@@ -31,6 +31,7 @@ namespace TaskerTasks
                 Configuration.GetConnectionString("DevConnection")));
             //DataAccess Providers
             services.AddScoped<ITaskProvider, EntityTaskProvider>();
+            services.AddScoped<IWorkingTaskProvider, EntityWorkingTaskProvider>();
 
 
             //Services

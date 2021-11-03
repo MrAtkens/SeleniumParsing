@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Models.System;
@@ -34,9 +35,23 @@ namespace TaskerTasks.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> StartTask(int id)
         {
+            var answer = await _avisoService.StartTask(id);
+            return Ok(answer);
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> CompleteTask(CompleteTaskDTO completeTaskDto)
+        {
+            var answer = await _avisoService.CompleteTask(completeTaskDto.Id, completeTaskDto.Answer);
+            return Ok(answer);
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> CancelTask(int id)
+        {
             try
             {
-                var answer = await _avisoService.StartTask(id);
+                var answer = await _avisoService.CancelTask(id);
                 return Ok(answer);
             }
             catch (Exception ex)
@@ -56,7 +71,12 @@ namespace TaskerTasks.Controllers
         {
             return await _avisoService.GetCount();
         }
-        
-        
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> RemoveTask(int id)
+        {
+            await _avisoService.RemoveTask(id);
+            return Ok();
+        }
     }
 }

@@ -5,6 +5,9 @@ namespace Models.System
 {
     public class WorkingTask : BaseTask
     {
+        public WorkingTask()
+        {
+        }
         public WorkingTask(BaseTask task)
         {
             SiteId = task.SiteId;

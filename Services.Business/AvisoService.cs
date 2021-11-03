@@ -40,13 +40,13 @@ namespace Services.Business
             };
         }
 
-        public async System.Threading.Tasks.Task ParseAllTasks()
+        public async Task ParseAllTasks()
         {
             //Initialize webdriver and authorize 
             var driver = Authorize();
             //Navigate to footer of page count to get all in one time without get ban
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(8);
-            var navigationEnd = driver.FindElement(By.Id("navi-end"));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            var navigationEnd = wait.Until(e => e.FindElement(By.Id("navi-end")));
             var href = navigationEnd.GetAttribute("href");
             var pageCountSplit = href.Split("#page-");
             var pageCount = int.Parse(pageCountSplit[1]);
@@ -67,23 +67,32 @@ namespace Services.Business
 
         public async Task<string> StartTask(int id)
         {
-         
-                var driver = Authorize();
-                var task = await _taskProvider.GetByTaskId(id, SiteId);
-                driver.Navigate().GoToUrl(_siteConfiguration.TaskUrl + task.TaskId);
-                var button = driver.FindElement(By.Name("submit"));
-                button.Click();
-                await _workingTaskProvider.Add(new WorkingTask(task));
-                return task.Description;
+            var task = await _taskProvider.GetByTaskId(id, SiteId);
+            await _workingTaskProvider.Add(new WorkingTask(task));
+            var driver = Authorize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            var navigationEnd = driver.FindElement(By.Id("navi-end"));
+            driver.Navigate().GoToUrl(_siteConfiguration.TaskUrl + task.TaskId);
+            var button = driver.FindElement(By.Name("goform")).FindElement(By.TagName("button"));
+            button.Click();
+            return task.Description + "\n" + task.Url;
         }
         
-        public async Task CompleteTask(int id, string answer)
+        public async Task<string> CompleteTask(int id, string answer)
         {
-            var driver = Authorize();
+            if (!await _workingTaskProvider.CheckByTaskId(id, SiteId))
+            {
+                return "Данное задание не выполняется";
+            }
             var task = await _workingTaskProvider.GetByTaskId(id, SiteId);
-            driver.Navigate().GoToUrl(_siteConfiguration.TaskUrl + task.TaskId);
-            driver.FindElement(By.Name("ask_reply")).SendKeys(answer);
-            try
+            await _workingTaskProvider.Remove(task);
+            var driver = Authorize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            var navigationEnd = driver.FindElement(By.Id("navi-end"));
+            driver.Navigate().GoToUrl(_siteConfiguration.TaskUrl + id);
+            var input = driver.FindElement(By.Name("ask_reply"));
+            input.SendKeys(answer);
+            /*try
             {
                 //Loading file if need
                 driver.FindElement(By.Id("file-load-patch")).SendKeys(answer);
@@ -91,10 +100,35 @@ namespace Services.Business
             catch (Exception ex)
             {
                 // ignored
-            }
+            }*/
 
-            var button = driver.FindElement(By.Name("submit"));
+            var button = driver.FindElement(By.ClassName("button_theme_blue"));
             button.Click();
+            return "Отчёт об выполнение задания был отправлен автору, пожалуйста ожидайте ответа";
+        }
+
+        public async Task<string> CancelTask(int id)
+        {
+            if (!await _workingTaskProvider.CheckByTaskId(id, SiteId))
+            {
+                return "Данное задание не выполняется";
+            }
+            var driver = Authorize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            var navigationEnd = driver.FindElement(By.Id("navi-end"));
+            driver.Navigate().GoToUrl(_siteConfiguration.TaskUrl + id);
+            var button = driver.FindElement(By.ClassName("button_theme_red"));
+            button.Click();
+            var acceptButton = driver.FindElement(By.Id("js-popup")).FindElement(By.TagName("form")).FindElement(By.TagName("div")).FindElement(By.TagName("button"));
+            acceptButton.Click();
+            var task = await _workingTaskProvider.GetByTaskId(id, SiteId);
+            await _workingTaskProvider.Remove(task);
+            return "Данное задание отменено";
+        }
+
+        public async Task RemoveTask(int id)
+        {
+            var task = await _workingTaskProvider.GetByTaskId(id, SiteId);
             await _workingTaskProvider.Remove(task);
         }
 
@@ -116,14 +150,15 @@ namespace Services.Business
             return await _taskProvider.GetAllBySiteId(SiteId);
         }
 
-        private static WebDriver Authorize()
+        private static IWebDriver Authorize()
         {
-            WebDriver driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory);
+            IWebDriver driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(_siteConfiguration.AuthUrl);
             //Authorization
             driver.FindElement(By.Name("username")).SendKeys(_siteConfiguration.Username);
-            driver.FindElement(By.Name("password")).SendKeys(_siteConfiguration.Password + Keys.Enter);
+            driver.FindElement(By.Name("password")).SendKeys(_siteConfiguration.Password);
+            driver.FindElement(By.Id("button-login")).Click();
             return driver;
         }
         
@@ -198,7 +233,7 @@ namespace Services.Business
             return tasks;
         }
 
-        private async System.Threading.Tasks.Task ParseTasksExtensions(IEnumerable<SimpleTask> tasks, IWebDriver driver, SiteConfiguration siteConfiguration)
+        private async Task ParseTasksExtensions(IEnumerable<SimpleTask> tasks, IWebDriver driver, SiteConfiguration siteConfiguration)
         {
             var editedTasks = new List<SimpleTask>();
             foreach (var task in tasks)
