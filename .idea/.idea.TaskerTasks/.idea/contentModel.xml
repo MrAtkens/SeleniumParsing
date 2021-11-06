@@ -61,6 +61,7 @@
       <e p="Helpers" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="DateHelper.cs" t="Include" />
+        <e p="FileHelper.cs" t="Include" />
         <e p="Helpers.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -68,6 +69,9 @@
               <e p="Helpers.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
+        </e>
+        <e p="ServiceHelpers" t="Include">
+          <e p="AvisoServiceHelper.cs" t="Include" />
         </e>
         <e p="WebDriverOptionsHelper.cs" t="Include" />
       </e>
@@ -126,6 +130,9 @@
           <e p="launchSettings.json" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
+        <e p="Swagger" t="Include">
+          <e p="SwaggerFileFilter.cs" t="Include" />
+        </e>
         <e p="TaskerTasks.csproj" t="IncludeRecursive" />
         <e p="WebDriver" t="Include">
           <e p="chromedriver.exe" t="Include" />

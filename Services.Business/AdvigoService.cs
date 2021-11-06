@@ -19,8 +19,6 @@ namespace Services.Business
     {
         private readonly ITaskProvider _taskProvider;
         private static SiteConfiguration _siteConfiguration;
-        private const int SiteId = 3;
-        
         public AdvigoService(ITaskProvider taskProvider)
         {
             _taskProvider = taskProvider;
@@ -36,18 +34,19 @@ namespace Services.Business
                 TasksUrl = configurationSection.GetSection("TasksUrl").Value,
                 TaskUrl = configurationSection.GetSection("TaskUrl").Value,
                 Username = configurationSection.GetSection("Username").Value,
-                Password = configurationSection.GetSection("Password").Value
+                Password = configurationSection.GetSection("Password").Value,
+                SiteId = int.Parse(configurationSection.GetSection("SiteId").Value)
             };
         }
         
         public async Task<int> GetCount()
         {
-            return await _taskProvider.GetCountSiteId(SiteId);
+            return await _taskProvider.GetCountSiteId(_siteConfiguration.SiteId);
         }
 
         public async Task<List<SimpleTask>> GetAllTasks()
         {
-            return await _taskProvider.GetAllBySiteId(SiteId);
+            return await _taskProvider.GetAllBySiteId(_siteConfiguration.SiteId);
         }
         
         public async Task ParseAllTasks()
@@ -96,7 +95,7 @@ namespace Services.Business
                 {
                     var taskIdElement = divList.GetAttribute("id").Split("job_");
                     task.TaskId = int.Parse(taskIdElement[1]);
-                    if (!await _taskProvider.CheckByTaskId(task.TaskId, SiteId))
+                    if (!await _taskProvider.CheckByTaskId(task.TaskId, _siteConfiguration.SiteId))
                     {
                         task.Title = divList.FindElement(By.ClassName("order-title")).Text;
                         var headerElement = divList.FindElement(By.CssSelector("div:nth-child(5) > table > tbody > tr"));
@@ -147,7 +146,7 @@ namespace Services.Business
                         }
 
                         task.Status = true;
-                        task.SiteId = SiteId;
+                        task.SiteId = _siteConfiguration.SiteId;
                         //Add to list
                         tasks.Add(task);
                         task.Dispose();

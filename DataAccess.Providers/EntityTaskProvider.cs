@@ -18,9 +18,9 @@ namespace DataAccess.Providers
             _context = context;
         }
 
-        public async System.Threading.Tasks.Task CheckTasks(List<SimpleTask> newTasks)
+        public async Task CheckTasks(List<SimpleTask> newTasks)
         {
-            foreach (SimpleTask task in newTasks)
+            foreach (var task in newTasks)
             {
                 var exists = await FirstOrDefault(x => x.Title.Equals(task.Title) && x.TaskId.Equals(task.TaskId));
                 if (exists == null)
@@ -52,6 +52,11 @@ namespace DataAccess.Providers
         public async Task<List<SimpleTask>> GetAllBySiteId(int siteId)
         {
             return await _context.Tasks.Where(t => t.SiteId == siteId).ToListAsync();
+        }
+
+        public async Task<List<SimpleTask>> GetAllNew()
+        {
+            return await _context.Tasks.Where(t => t.TaskStatus).ToListAsync();
         }
 
         public async Task<SimpleTask> GetByTaskId(int id, int siteId)

@@ -14,6 +14,7 @@ namespace DataAccess.Providers.Abstract
         Task<List<int>> GetAllTaskId();
         Task<SimpleTask> GetByTaskId(int id, int siteId);
         Task<List<SimpleTask>> GetAllBySiteId(int siteId);
+        Task<List<SimpleTask>> GetAllNew();
         Task<int> GetCountSiteId(int siteId);
     }
 }

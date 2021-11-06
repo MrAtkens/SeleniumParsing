@@ -9,7 +9,7 @@ namespace Models.System
         public int SiteId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        
+
         public void Dispose()
         {
             GC.SuppressFinalize(this);

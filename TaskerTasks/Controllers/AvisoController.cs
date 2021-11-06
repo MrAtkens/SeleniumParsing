@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DTOs;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Models.System;
@@ -18,6 +19,8 @@ namespace TaskerTasks.Controllers
        {
             _avisoService = avisoService;
        }
+       
+       //Tasks parsing
 
         [HttpGet]
         public async Task InitialParse()
@@ -31,6 +34,14 @@ namespace TaskerTasks.Controllers
         {
             await _avisoService.ParseOnlyExtensions();
         }
+        
+        [HttpGet]
+        public async Task ParseNew()
+        {
+            await _avisoService.ParseNew();
+        }
+        
+        //Parse operations like subscribe, unsubscribe, complete
 
         [HttpGet("{id}")]
         public async Task<IActionResult> StartTask(int id)
@@ -40,9 +51,9 @@ namespace TaskerTasks.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> CompleteTask(CompleteTaskDTO completeTaskDto)
+        public async Task<IActionResult> CompleteTask([FromForm] CompleteTaskDTO completeTaskDto, List<IFormFile> files)
         {
-            var answer = await _avisoService.CompleteTask(completeTaskDto.Id, completeTaskDto.Answer);
+            var answer = await _avisoService.CompleteTask(completeTaskDto.Id, completeTaskDto.Answer, files);
             return Ok(answer);
         }
         
@@ -59,6 +70,15 @@ namespace TaskerTasks.Controllers
                 return Forbid();
             }
         }
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> RemoveTask(int id)
+        {
+            await _avisoService.RemoveTask(id);
+            return Ok();
+        }
+        
+        //Parse get to watch result of parsing
 
         [HttpGet]
         public async Task<List<SimpleTask>> Get()
@@ -71,12 +91,6 @@ namespace TaskerTasks.Controllers
         {
             return await _avisoService.GetCount();
         }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> RemoveTask(int id)
-        {
-            await _avisoService.RemoveTask(id);
-            return Ok();
-        }
+        
     }
 }

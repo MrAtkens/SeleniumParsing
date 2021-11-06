@@ -14,5 +14,6 @@ namespace Models.System
         public string TaskUrl { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public int SiteId { get; set; }
     }
 }
