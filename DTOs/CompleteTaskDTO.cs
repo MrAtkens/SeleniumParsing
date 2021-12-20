@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
-
-namespace DTOs
+﻿namespace DTOs
 {
     public class CompleteTaskDTO
     {

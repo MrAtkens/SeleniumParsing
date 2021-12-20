@@ -22,8 +22,6 @@ namespace DataSource
         }
 
         public DbSet<SimpleTask> Tasks { get; set; }
-        public DbSet<WorkingTask> WorkingTasks { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SimpleTask>()

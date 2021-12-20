@@ -56,7 +56,7 @@ namespace DataAccess.Providers
 
         public async Task<List<SimpleTask>> GetAllNew()
         {
-            return await _context.Tasks.Where(t => t.TaskStatus).ToListAsync();
+            return await _context.Tasks.Where(t => t.isNew).ToListAsync();
         }
 
         public async Task<SimpleTask> GetByTaskId(int id, int siteId)

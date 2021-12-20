@@ -1,30 +1,26 @@
 ﻿using DataAccess.Providers.Abstract;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading;
 using Models.System;
 using OpenQA.Selenium.Support.UI;
 using System.Threading.Tasks;
 using Helpers;
 using Helpers.ServiceHelpers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Models.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace Services.Business
 {
     public class AvisoService
     {
         private readonly ITaskProvider _taskProvider;
-        private readonly IWorkingTaskProvider _workingTaskProvider;
         private static SiteConfiguration _siteConfiguration;
-        public AvisoService(ITaskProvider taskProvider, IWorkingTaskProvider workingTaskProvider)
+        public AvisoService(ITaskProvider taskProvider)
         {
             _taskProvider = taskProvider;
-            _workingTaskProvider = workingTaskProvider;
             IConfiguration config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.CoreConfigurations.json")
                 .Build();
@@ -52,7 +48,8 @@ namespace Services.Business
             var navigationEnd = wait.Until(e => e.FindElement(By.Id("navi-end")));
             var href = navigationEnd.GetAttribute("href");
             var pageCountSplit = href.Split("#page-");
-            await AvisoServiceHelper.StartParseTasks(driver, pageCountSplit, _siteConfiguration, _taskProvider, false);
+            var pageCount = int.Parse(pageCountSplit[1]);
+            await AvisoServiceHelper.StartParseTasks(driver, pageCount, _siteConfiguration, _taskProvider, false, Status.Available);
             driver.Quit();
         }
         public async Task ParseOnlyExtensions()
@@ -71,12 +68,23 @@ namespace Services.Business
             var newTasksButton = wait.Until(e => e.FindElement(By.CssSelector(
                 "#contentwrapper > div:nth-child(6) > a:nth-child(2)")));
             newTasksButton.Click();
-            var navigationEnd = driver.FindElement(By.Id("navi-end"));
-            var href = navigationEnd.GetAttribute("href");
-            var pageCountSplit = href.Split("#page-");
-            await AvisoServiceHelper.StartParseTasks(driver, pageCountSplit, _siteConfiguration, _taskProvider, true);
+            await AvisoServiceHelper.StartParseTasks(driver, 20, _siteConfiguration, _taskProvider, true, Status.Available);
             var newTasks = await _taskProvider.GetAllNew();
             await AvisoServiceHelper.ParseTasksExtensions(newTasks, driver, _siteConfiguration, _taskProvider);
+            driver.Quit();
+        }
+        
+        public async Task UpdateStatus()
+        {
+            var driver = AvisoServiceHelper.Authorize(_siteConfiguration);
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            //Get new tasks
+            foreach (var taskStatusUpdateDto in AvisoServiceHelper.StatusUpdateDtos)
+            {
+                var inWork = wait.Until(e => e.FindElement(By.CssSelector(taskStatusUpdateDto.ParsingQuery)));
+                inWork.Click();
+                await AvisoServiceHelper.EditTaskStatus(driver, _siteConfiguration, _taskProvider, taskStatusUpdateDto.TaskStatus);   
+            }
             driver.Quit();
         }
 
@@ -91,7 +99,8 @@ namespace Services.Business
             var navigationEnd = driver.FindElement(By.Id("navi-end"));
             driver.Navigate().GoToUrl(_siteConfiguration.TaskUrl + id);
             var button = driver.FindElement(By.Name("goform")).FindElement(By.TagName("button"));
-            await _workingTaskProvider.Add(new WorkingTask(task));
+            task.Status = Status.InWork;
+            await _taskProvider.Edit(task);
             button.Click();
             driver.Quit();
             return task.Description + "\n" + task.Url;
@@ -99,7 +108,7 @@ namespace Services.Business
         
         public async Task<string> CompleteTask(int id, string answer, List<IFormFile> files )
         {
-            if (!await _workingTaskProvider.CheckByTaskId(id, _siteConfiguration.SiteId))
+            if (!await _taskProvider.CheckByTaskId(id, _siteConfiguration.SiteId))
             {
                 return "Данное задание не выполняется";
             }
@@ -121,6 +130,7 @@ namespace Services.Business
                     {
                         string fileName = Path.GetRandomFileName();
                         fileName = Path.ChangeExtension(fileName, FileHelper.GetExtension(file.ContentType));
+                        
                         var filePath = Path.Combine(Path.GetTempPath(), fileName);
                         await using (var stream = File.Create(filePath))
                         {
@@ -139,8 +149,9 @@ namespace Services.Business
             }
 
             var button = driver.FindElement(By.ClassName("button_theme_blue"));
-            var task = await _workingTaskProvider.GetByTaskId(id, _siteConfiguration.SiteId);
-            await _workingTaskProvider.Remove(task);
+            var task = await _taskProvider.GetByTaskId(id, _siteConfiguration.SiteId);
+            task.Status = Status.InCheck;
+            await _taskProvider.Edit(task);
             button.Click();
             driver.Quit();
             return "Отчёт об выполнение задания был отправлен автору, пожалуйста ожидайте ответа";
@@ -148,7 +159,7 @@ namespace Services.Business
 
         public async Task<string> CancelTask(int id)
         {
-            if (!await _workingTaskProvider.CheckByTaskId(id, _siteConfiguration.SiteId))
+            if (!await _taskProvider.CheckByTaskId(id, _siteConfiguration.SiteId))
             {
                 return "Данное задание не выполняется";
             }
@@ -160,16 +171,16 @@ namespace Services.Business
             button.Click();
             var acceptButton = driver.FindElement(By.Id("js-popup")).FindElement(By.TagName("form")).FindElement(By.TagName("div")).FindElement(By.TagName("button"));
             acceptButton.Click();
-            var task = await _workingTaskProvider.GetByTaskId(id, _siteConfiguration.SiteId);
-            await _workingTaskProvider.Remove(task);
+            var task = await _taskProvider.GetByTaskId(id, _siteConfiguration.SiteId);
+            task.Status = Status.Available;
+            await _taskProvider.Edit(task);
             driver.Quit();
             return "Данное задание отменено";
         }
-
         public async Task RemoveTask(int id)
         {
-            var task = await _workingTaskProvider.GetByTaskId(id, _siteConfiguration.SiteId);
-            await _workingTaskProvider.Remove(task);
+            var task = await _taskProvider.GetByTaskId(id, _siteConfiguration.SiteId);
+            await _taskProvider.Remove(task);
         }
         
         //Get Tasks for watch results of parsing
@@ -181,6 +192,11 @@ namespace Services.Business
         public async Task<List<SimpleTask>> GetAllTasks()
         {
             return await _taskProvider.GetAllBySiteId(_siteConfiguration.SiteId);
+        }
+
+        public async Task<SimpleTask> GetTaskByTaskId(int taskId)
+        {
+            return await _taskProvider.GetByTaskId(taskId, _siteConfiguration.SiteId);
         }
     }
 }

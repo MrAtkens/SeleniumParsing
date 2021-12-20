@@ -24,23 +24,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a7567ce-3638-4b82-bde2-26e6cb9df694" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Helpers/FileHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TaskerTasks/Swagger/SwaggerFileFilter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DTOs/TaskStatusUpdateDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Helpers/ServiceHelpers/WMailServiceHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Enums/Status.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services.Business/WMailService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Configuration/appsettings.CoreConfigurations.json" beforeDir="false" afterPath="$PROJECT_DIR$/Configuration/appsettings.CoreConfigurations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTOs/CompleteTaskDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/CompleteTaskDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DTOs/DTOs.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/DTOs.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAccess.Providers/Abstract/ITaskProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess.Providers/Abstract/ITaskProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess.Domain/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess.Domain/ApplicationContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess.Providers/Abstract/IWorkingTaskProvider.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DataAccess.Providers/EntityTaskProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess.Providers/EntityTaskProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess.Providers/EntityWorkingTaskProvider.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Helpers/Helpers.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/Helpers.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/System/BaseTask.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/System/BaseTask.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/System/SimpleTask.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/System/SimpleTask.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/System/SiteConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/System/SiteConfiguration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Services.Business/AdvigoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services.Business/AdvigoService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Services.Business/AvisoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services.Business/AvisoService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services.Business/Services.Business.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Services.Business/Services.Business.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskerTasks/Controllers/AvisoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TaskerTasks/Controllers/AvisoController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskerTasks/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TaskerTasks/Startup.cs" afterDir="false" />
     </list>
@@ -54,14 +55,12 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/DataAccess.Domain/ApplicationContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Services.Business/AvisoService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DataAccess.Providers/EntityWorkingTaskProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Services.Business/AdvigoService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DataAccess.Providers/Abstract/ITaskProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DataAccess.Providers/EntityTaskProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TaskerTasks/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DataAccess.Providers/Abstract/ITaskProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Services.Business/AvisoService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Services.Business/AdvigoService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Models/System/WorkingTask.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DataAccess.Providers/Abstract/IWorkingTaskProvider.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -92,26 +91,30 @@
         <option value="$PROJECT_DIR$/Models/System/TTask.cs" />
         <option value="$PROJECT_DIR$/Models/System/Task.cs" />
         <option value="$PROJECT_DIR$/DataAccess.Providers/Abstract/EntityWorkingTaskProvider.cs" />
-        <option value="$PROJECT_DIR$/DataAccess.Domain/ApplicationContext.cs" />
         <option value="$PROJECT_DIR$/TaskerTasks/Controllers/AdvigoController.cs" />
         <option value="$PROJECT_DIR$/Models/System/WorkingTask.cs" />
         <option value="$PROJECT_DIR$/DataAccess.Providers/Abstract/IWorkingTaskProvider.cs" />
-        <option value="$PROJECT_DIR$/DataAccess.Providers/EntityWorkingTaskProvider.cs" />
         <option value="$PROJECT_DIR$/DTOs/Class1.cs" />
         <option value="$PROJECT_DIR$/TaskerTasks/Swagger/SwaggerFileFilter.cs" />
-        <option value="$PROJECT_DIR$/TaskerTasks/Startup.cs" />
         <option value="$PROJECT_DIR$/Models/System/SiteConfiguration.cs" />
-        <option value="$PROJECT_DIR$/Services.Business/AdvigoService.cs" />
-        <option value="$PROJECT_DIR$/Models/System/BaseTask.cs" />
-        <option value="$PROJECT_DIR$/Models/System/SimpleTask.cs" />
-        <option value="$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs" />
         <option value="$PROJECT_DIR$/DataAccess.Providers/Abstract/ITaskProvider.cs" />
-        <option value="$PROJECT_DIR$/DataAccess.Providers/EntityTaskProvider.cs" />
-        <option value="$PROJECT_DIR$/Configuration/appsettings.CoreConfigurations.json" />
-        <option value="$PROJECT_DIR$/TaskerTasks/Controllers/AvisoController.cs" />
         <option value="$PROJECT_DIR$/DTOs/CompleteTaskDTO.cs" />
         <option value="$PROJECT_DIR$/Helpers/FileHelper.cs" />
+        <option value="$PROJECT_DIR$/Models/System/SimpleTask.cs" />
+        <option value="$PROJECT_DIR$/Models/Enums/Status.cs" />
+        <option value="$PROJECT_DIR$/Models/System/BaseTask.cs" />
+        <option value="$PROJECT_DIR$/Services.Business/AdvigoService.cs" />
+        <option value="$PROJECT_DIR$/DataAccess.Providers/EntityTaskProvider.cs" />
+        <option value="$PROJECT_DIR$/DTOs/TaskStatusUpdateDTO.cs" />
+        <option value="$PROJECT_DIR$/DataAccess.Domain/ApplicationContext.cs" />
+        <option value="$PROJECT_DIR$/DataAccess.Providers/EntityWorkingTaskProvider.cs" />
+        <option value="$PROJECT_DIR$/TaskerTasks/Startup.cs" />
+        <option value="$PROJECT_DIR$/TaskerTasks/Controllers/AvisoController.cs" />
+        <option value="$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs" />
         <option value="$PROJECT_DIR$/Services.Business/AvisoService.cs" />
+        <option value="$PROJECT_DIR$/Configuration/appsettings.CoreConfigurations.json" />
+        <option value="$PROJECT_DIR$/Services.Business/WMailService.cs" />
+        <option value="$PROJECT_DIR$/Helpers/ServiceHelpers/WMailServiceHelper.cs" />
       </list>
     </option>
   </component>
@@ -229,6 +232,11 @@
       <workItem from="1636107280160" duration="114000" />
       <workItem from="1636129251313" duration="4913000" />
       <workItem from="1636211731114" duration="16582000" />
+      <workItem from="1636628387986" duration="12076000" />
+      <workItem from="1637146760205" duration="594000" />
+      <workItem from="1637416019352" duration="2417000" />
+      <workItem from="1637476934155" duration="1310000" />
+      <workItem from="1637479435847" duration="121000" />
     </task>
     <servers />
   </component>
@@ -261,86 +269,86 @@
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
     <state x="713" y="365" key="#com.intellij.fileTypes.FileTypeChooser/0.46.1920.1034@0.46.1920.1034" timestamp="1634747394653" />
-    <state width="1877" height="367" key="GridCell.Tab.0.bottom" timestamp="1636234660834">
+    <state width="1877" height="367" key="GridCell.Tab.0.bottom" timestamp="1636658427920">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.0.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660834" />
-    <state width="1877" height="367" key="GridCell.Tab.0.center" timestamp="1636234660834">
+    <state width="1877" height="367" key="GridCell.Tab.0.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427920" />
+    <state width="1877" height="367" key="GridCell.Tab.0.center" timestamp="1636658427920">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.0.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660834" />
-    <state width="1877" height="367" key="GridCell.Tab.0.left" timestamp="1636234660834">
+    <state width="1877" height="367" key="GridCell.Tab.0.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427920" />
+    <state width="1877" height="367" key="GridCell.Tab.0.left" timestamp="1636658427920">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.0.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660834" />
-    <state width="1877" height="367" key="GridCell.Tab.0.right" timestamp="1636234660834">
+    <state width="1877" height="367" key="GridCell.Tab.0.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427920" />
+    <state width="1877" height="367" key="GridCell.Tab.0.right" timestamp="1636658427920">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.0.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660834" />
-    <state width="1877" height="367" key="GridCell.Tab.1.bottom" timestamp="1636234677511">
+    <state width="1877" height="367" key="GridCell.Tab.0.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427920" />
+    <state width="1877" height="367" key="GridCell.Tab.1.bottom" timestamp="1636658447312">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.1.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636234677511" />
-    <state width="1877" height="367" key="GridCell.Tab.1.center" timestamp="1636234677511">
+    <state width="1877" height="367" key="GridCell.Tab.1.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636658447312" />
+    <state width="1877" height="367" key="GridCell.Tab.1.center" timestamp="1636658447312">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.1.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636234677511" />
-    <state width="1877" height="367" key="GridCell.Tab.1.left" timestamp="1636234677511">
+    <state width="1877" height="367" key="GridCell.Tab.1.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636658447312" />
+    <state width="1877" height="367" key="GridCell.Tab.1.left" timestamp="1636658447312">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.1.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636234677511" />
-    <state width="1877" height="367" key="GridCell.Tab.1.right" timestamp="1636234677511">
+    <state width="1877" height="367" key="GridCell.Tab.1.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636658447312" />
+    <state width="1877" height="367" key="GridCell.Tab.1.right" timestamp="1636658447312">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.1.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636234677511" />
-    <state width="1877" height="367" key="GridCell.Tab.2.bottom" timestamp="1636234660695">
+    <state width="1877" height="367" key="GridCell.Tab.1.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636658447312" />
+    <state width="1877" height="367" key="GridCell.Tab.2.bottom" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.2.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660695" />
-    <state width="1877" height="367" key="GridCell.Tab.2.center" timestamp="1636234660695">
+    <state width="1877" height="367" key="GridCell.Tab.2.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.2.center" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.2.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660695" />
-    <state width="1877" height="367" key="GridCell.Tab.2.left" timestamp="1636234660695">
+    <state width="1877" height="367" key="GridCell.Tab.2.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.2.left" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.2.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660695" />
-    <state width="1877" height="367" key="GridCell.Tab.2.right" timestamp="1636234660695">
+    <state width="1877" height="367" key="GridCell.Tab.2.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.2.right" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.2.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660695" />
-    <state width="1877" height="367" key="GridCell.Tab.3.bottom" timestamp="1636234660696">
+    <state width="1877" height="367" key="GridCell.Tab.2.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.3.bottom" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.3.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660696" />
-    <state width="1877" height="367" key="GridCell.Tab.3.center" timestamp="1636234660695">
+    <state width="1877" height="367" key="GridCell.Tab.3.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.3.center" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.3.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660695" />
-    <state width="1877" height="367" key="GridCell.Tab.3.left" timestamp="1636234660695">
+    <state width="1877" height="367" key="GridCell.Tab.3.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.3.left" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.3.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660695" />
-    <state width="1877" height="367" key="GridCell.Tab.3.right" timestamp="1636234660695">
+    <state width="1877" height="367" key="GridCell.Tab.3.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.3.right" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.3.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660695" />
-    <state width="1877" height="367" key="GridCell.Tab.4.bottom" timestamp="1636234660696">
+    <state width="1877" height="367" key="GridCell.Tab.3.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.4.bottom" timestamp="1636658427762">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.4.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660696" />
-    <state width="1877" height="367" key="GridCell.Tab.4.center" timestamp="1636234660696">
+    <state width="1877" height="367" key="GridCell.Tab.4.bottom/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427762" />
+    <state width="1877" height="367" key="GridCell.Tab.4.center" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.4.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660696" />
-    <state width="1877" height="367" key="GridCell.Tab.4.left" timestamp="1636234660696">
+    <state width="1877" height="367" key="GridCell.Tab.4.center/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.4.left" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.4.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660696" />
-    <state width="1877" height="367" key="GridCell.Tab.4.right" timestamp="1636234660696">
+    <state width="1877" height="367" key="GridCell.Tab.4.left/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
+    <state width="1877" height="367" key="GridCell.Tab.4.right" timestamp="1636658427761">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.4.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636234660696" />
+    <state width="1877" height="367" key="GridCell.Tab.4.right/0.46.1920.1034@0.46.1920.1034" timestamp="1636658427761" />
     <state width="196" height="455" key="HiddenNamespacesPopup" timestamp="1634747513499">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
@@ -349,10 +357,10 @@
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
     <state x="552" y="295" key="Rider.ProjectTemplateDialog.Size/0.46.1920.1034@0.46.1920.1034" timestamp="1635970311039" />
-    <state x="767" y="253" key="RiderGenerateDialog" timestamp="1635879316176">
+    <state x="767" y="253" key="RiderGenerateDialog" timestamp="1636632261045">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
-    <state x="767" y="253" key="RiderGenerateDialog/0.46.1920.1034@0.46.1920.1034" timestamp="1635879316176" />
+    <state x="767" y="253" key="RiderGenerateDialog/0.46.1920.1034@0.46.1920.1034" timestamp="1636632261045" />
     <state x="92" y="138" width="1736" height="850" key="VCS.FileHistoryDialog" timestamp="1634813007938">
       <screen x="0" y="46" width="1920" height="1034" />
     </state>
@@ -375,419 +383,640 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>48</line>
+          <line>47</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="21">
             <startOffsets>
-              <option value="1877" />
+              <option value="1731" />
             </startOffsets>
             <endOffsets>
-              <option value="1890" />
+              <option value="1744" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>49</line>
+          <line>48</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="30">
             <startOffsets>
-              <option value="1969" />
+              <option value="1823" />
             </startOffsets>
             <endOffsets>
-              <option value="2002" />
+              <option value="1856" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>53</line>
+          <line>52</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="30">
             <startOffsets>
-              <option value="2266" />
+              <option value="2120" />
             </startOffsets>
             <endOffsets>
-              <option value="2308" />
+              <option value="2162" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="146" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>52</line>
+          <line>51</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="29">
             <startOffsets>
-              <option value="2207" />
+              <option value="2061" />
             </startOffsets>
             <endOffsets>
-              <option value="2253" />
+              <option value="2107" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="148" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>51</line>
+          <line>50</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="28">
             <startOffsets>
-              <option value="2124" />
+              <option value="1978" />
             </startOffsets>
             <endOffsets>
-              <option value="2194" />
+              <option value="2048" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="154" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>74</line>
-          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="69">
-            <startOffsets>
-              <option value="3312" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3358" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="158" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>75</line>
-          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="70">
-            <startOffsets>
-              <option value="3371" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3413" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="159" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>73</line>
-          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="68">
-            <startOffsets>
-              <option value="3241" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3299" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="160" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>76</line>
-          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="71">
-            <startOffsets>
-              <option value="3426" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3532" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="161" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>72</line>
-          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="69">
-            <startOffsets>
-              <option value="3205" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3228" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="164" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/TaskerTasks/Controllers/AvisoController.cs</url>
-          <line>55</line>
+          <line>61</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\TaskerTasks\Controllers\AvisoController.cs" initialLine="55">
             <startOffsets>
-              <option value="1483" />
+              <option value="1611" />
             </startOffsets>
             <endOffsets>
-              <option value="1580" />
+              <option value="1708" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="165" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/TaskerTasks/Controllers/AvisoController.cs</url>
-          <line>56</line>
+          <line>62</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\TaskerTasks\Controllers\AvisoController.cs" initialLine="56">
             <startOffsets>
-              <option value="1593" />
+              <option value="1721" />
             </startOffsets>
             <endOffsets>
-              <option value="1611" />
+              <option value="1739" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="166" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>101</line>
+          <line>113</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="97">
             <startOffsets>
-              <option value="4764" />
+              <option value="5195" />
             </startOffsets>
             <endOffsets>
-              <option value="4841" />
+              <option value="5265" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="167" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>103</line>
+          <line>115</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="99">
             <startOffsets>
-              <option value="4872" />
+              <option value="5296" />
             </startOffsets>
             <endOffsets>
-              <option value="4911" />
+              <option value="5335" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="168" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>106</line>
+          <line>118</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="102">
             <startOffsets>
-              <option value="5013" />
+              <option value="5437" />
             </startOffsets>
             <endOffsets>
-              <option value="5080" />
+              <option value="5504" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="170" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>107</line>
+          <line>119</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="103">
             <startOffsets>
-              <option value="5093" />
+              <option value="5517" />
             </startOffsets>
             <endOffsets>
-              <option value="5151" />
+              <option value="5575" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="171" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>108</line>
+          <line>120</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="104">
             <startOffsets>
-              <option value="5164" />
+              <option value="5588" />
             </startOffsets>
             <endOffsets>
-              <option value="5223" />
+              <option value="5647" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="172" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>111</line>
+          <line>123</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="105">
             <startOffsets>
-              <option value="5286" />
+              <option value="5710" />
             </startOffsets>
             <endOffsets>
-              <option value="5339" />
+              <option value="5763" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="173" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>105</line>
+          <line>117</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="101">
             <startOffsets>
-              <option value="4938" />
+              <option value="5362" />
             </startOffsets>
             <endOffsets>
-              <option value="5000" />
+              <option value="5424" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="174" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>112</line>
+          <line>124</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="106">
             <startOffsets>
-              <option value="5356" />
+              <option value="5780" />
             </startOffsets>
             <endOffsets>
-              <option value="5379" />
+              <option value="5803" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="175" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>114</line>
+          <line>126</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="107">
             <startOffsets>
-              <option value="5406" />
+              <option value="5830" />
             </startOffsets>
             <endOffsets>
-              <option value="5427" />
+              <option value="5851" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="177" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>140</line>
+          <line>153</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="120">
             <startOffsets>
-              <option value="6566" />
+              <option value="7015" />
             </startOffsets>
             <endOffsets>
-              <option value="6633" />
+              <option value="7082" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="178" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>142</line>
+          <line>156</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="122">
             <startOffsets>
-              <option value="6740" />
+              <option value="7224" />
             </startOffsets>
             <endOffsets>
-              <option value="6780" />
+              <option value="7255" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="179" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>141</line>
+          <line>154</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="121">
             <startOffsets>
-              <option value="6646" />
+              <option value="7095" />
             </startOffsets>
             <endOffsets>
-              <option value="6727" />
+              <option value="7169" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="180" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>143</line>
+          <line>157</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="123">
             <startOffsets>
-              <option value="6793" />
+              <option value="7268" />
             </startOffsets>
             <endOffsets>
-              <option value="6808" />
+              <option value="7283" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="181" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>118</line>
+          <line>130</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="115">
             <startOffsets>
-              <option value="5500" />
+              <option value="5924" />
             </startOffsets>
             <endOffsets>
-              <option value="5569" />
+              <option value="5993" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="184" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>119</line>
+          <line>131</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="116">
             <startOffsets>
-              <option value="5590" />
+              <option value="6014" />
             </startOffsets>
             <endOffsets>
-              <option value="5617" />
+              <option value="6041" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="185" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>124</line>
+          <line>137</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="121">
             <startOffsets>
-              <option value="5925" />
+              <option value="6374" />
             </startOffsets>
             <endOffsets>
-              <option value="5973" />
+              <option value="6422" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="189" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>128</line>
+          <line>141</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="125">
             <startOffsets>
-              <option value="6232" />
+              <option value="6681" />
             </startOffsets>
             <endOffsets>
-              <option value="6263" />
+              <option value="6712" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="190" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>123</line>
+          <line>136</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="121">
             <startOffsets>
-              <option value="5842" />
+              <option value="6291" />
             </startOffsets>
             <endOffsets>
-              <option value="5900" />
+              <option value="6349" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="192" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>121</line>
+          <line>133</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="119">
             <startOffsets>
-              <option value="5664" />
+              <option value="6088" />
             </startOffsets>
             <endOffsets>
-              <option value="5707" />
+              <option value="6131" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="194" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
-          <line>122</line>
+          <line>134</line>
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="122">
             <startOffsets>
-              <option value="5732" />
+              <option value="6156" />
             </startOffsets>
             <endOffsets>
-              <option value="5817" />
+              <option value="6241" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="195" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TaskerTasks/Controllers/AvisoController.cs</url>
+          <line>96</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\TaskerTasks\Controllers\AvisoController.cs" initialLine="96">
+            <startOffsets>
+              <option value="2604" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2651" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="196" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
+          <line>201</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="203">
+            <startOffsets>
+              <option value="9165" />
+            </startOffsets>
+            <endOffsets>
+              <option value="9239" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="199" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
+          <line>81</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="83">
+            <startOffsets>
+              <option value="3560" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3622" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="200" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
+          <line>82</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="84">
+            <startOffsets>
+              <option value="3635" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3698" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="201" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
+          <line>84</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="86">
+            <startOffsets>
+              <option value="3739" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3811" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="202" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
+          <line>86</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="88">
+            <startOffsets>
+              <option value="3842" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3936" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="203" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
+          <line>87</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="89">
+            <startOffsets>
+              <option value="3953" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3968" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
+          <line>88</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="90">
+            <startOffsets>
+              <option value="3985" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4100" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="205" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
+          <line>90</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="92">
+            <startOffsets>
+              <option value="4130" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4144" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="206" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>45</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="44">
+            <startOffsets>
+              <option value="2122" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2188" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="207" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>47</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="46">
+            <startOffsets>
+              <option value="2295" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2368" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="208" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>50</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="49">
+            <startOffsets>
+              <option value="2541" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2581" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="209" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>46</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="45">
+            <startOffsets>
+              <option value="2205" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2278" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="210" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>49</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="48">
+            <startOffsets>
+              <option value="2427" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2524" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="211" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>140</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="141">
+            <startOffsets>
+              <option value="6686" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6699" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>123</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="124">
+            <startOffsets>
+              <option value="6072" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6129" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>122</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="123">
+            <startOffsets>
+              <option value="6014" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6051" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>126</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="127">
+            <startOffsets>
+              <option value="6247" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6301" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>127</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="128">
+            <startOffsets>
+              <option value="6326" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6347" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>129</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="130">
+            <startOffsets>
+              <option value="6410" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6426" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Helpers/ServiceHelpers/AvisoServiceHelper.cs</url>
+          <line>124</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Helpers\ServiceHelpers\AvisoServiceHelper.cs" initialLine="125">
+            <startOffsets>
+              <option value="6150" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6200" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/AvisoService.cs</url>
+          <line>155</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="155">
+            <startOffsets>
+              <option value="7182" />
+            </startOffsets>
+            <endOffsets>
+              <option value="7211" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="220" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

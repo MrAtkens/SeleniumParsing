@@ -1,5 +1,6 @@
 ﻿using System;
 using Models.Base;
+using Models.Enums;
 
 namespace Models.System
 {
@@ -9,6 +10,8 @@ namespace Models.System
         public int SiteId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public Status Status { get; set; }
+
 
         public void Dispose()
         {

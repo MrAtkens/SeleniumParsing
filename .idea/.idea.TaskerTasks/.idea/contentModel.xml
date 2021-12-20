@@ -32,12 +32,10 @@
             <e p="IProvider.cs" t="Include" />
           </e>
           <e p="ITaskProvider.cs" t="Include" />
-          <e p="IWorkingTaskProvider.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="DataAccess.Providers.csproj" t="IncludeRecursive" />
         <e p="EntityTaskProvider.cs" t="Include" />
-        <e p="EntityWorkingTaskProvider.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0" t="Include">
@@ -57,6 +55,7 @@
             </e>
           </e>
         </e>
+        <e p="TaskStatusUpdateDTO.cs" t="Include" />
       </e>
       <e p="Helpers" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -72,6 +71,7 @@
         </e>
         <e p="ServiceHelpers" t="Include">
           <e p="AvisoServiceHelper.cs" t="Include" />
+          <e p="WMailServiceHelper.cs" t="Include" />
         </e>
         <e p="WebDriverOptionsHelper.cs" t="Include" />
       </e>
@@ -80,6 +80,9 @@
           <e p="Entity.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Enums" t="Include">
+          <e p="Status.cs" t="Include" />
+        </e>
         <e p="Models.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -109,6 +112,7 @@
           </e>
         </e>
         <e p="Services.Business.csproj" t="IncludeRecursive" />
+        <e p="WMailService.cs" t="Include" />
       </e>
       <e p="TaskerTasks" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />

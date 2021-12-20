@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Providers.Abstract;
 using DataAccess.Providers.Abstract.Base;
+using DTOs;
+using Models.Enums;
 using Models.System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -13,20 +15,44 @@ namespace Helpers.ServiceHelpers
 {
     public static class AvisoServiceHelper
     {
-        public static async Task StartParseTasks(IWebDriver driver, IReadOnlyList<string> pageCountText, SiteConfiguration siteConfiguration, ITaskProvider taskProvider, 
-            bool TaskStatus)
+        
+        public static List<TaskStatusUpdateDTO> StatusUpdateDtos = new List<TaskStatusUpdateDTO>()
         {
-            var pageCount = int.Parse(pageCountText[1]);
+            new TaskStatusUpdateDTO("#contentwrapper > div:nth-child(7) > a:nth-child(3)", Status.InWork),
+            new TaskStatusUpdateDTO("#contentwrapper > div:nth-child(7) > a:nth-child(4)", Status.InCheck),
+            new TaskStatusUpdateDTO("#contentwrapper > div:nth-child(7) > a:nth-child(5)", Status.Paid),
+            new TaskStatusUpdateDTO("#contentwrapper > div:nth-child(7) > a:nth-child(6)", Status.Rejected)
+        };
+        public static async Task StartParseTasks(IWebDriver driver, int count, SiteConfiguration siteConfiguration, ITaskProvider taskProvider, 
+            bool isNew, Status status)
+        {
             //Iteration of page for parse all pages start from 1 because we start from first page
-            for (var i = 1; i < pageCount; i++)
+            for (var i = 1; i < count; i++)
             {
                 var waitTask = new WebDriverWait(driver, TimeSpan.FromSeconds(7));
                 driver.Navigate().GoToUrl(siteConfiguration.TasksUrl + i);
                 var parsedTasks = waitTask.Until(e => e.FindElement(By.Id("work-task")));
                 IList<IWebElement> elements = parsedTasks.FindElements(By.TagName("tr"));
                 //Parse tasks on one page and add range(30-35 tasks)
-                var baseTasks = await ParseTasks(elements, taskProvider, siteConfiguration.SiteId, TaskStatus);
+                var baseTasks = await ParseTasks(elements, taskProvider, siteConfiguration.SiteId, isNew, status);
                 await taskProvider.AddRange(baseTasks);
+            }
+        }
+        
+        public static async Task EditTaskStatus(IWebDriver driver, SiteConfiguration siteConfiguration, ITaskProvider taskProvider, Status status)
+        {
+            try
+            {
+                var waitTask = new WebDriverWait(driver, TimeSpan.FromSeconds(7));
+                var parsedTasks = waitTask.Until(e => e.FindElement(By.Id("work-task")));
+                IList<IWebElement> elements = parsedTasks.FindElements(By.TagName("tr"));
+                //Update only task status
+                var baseTasks = await UpdateTaskStatus(elements, taskProvider, siteConfiguration.SiteId, status);
+                await taskProvider.EditRange(baseTasks);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
         
@@ -60,7 +86,7 @@ namespace Helpers.ServiceHelpers
                   task.CreationDate = DateTime.Parse(timeLines[1] + " " + timeLines[3]);
                   task.WorkCount = workCountElement.Text;
                   task.CheckTime = DateHelper.CheckTime;
-                  task.TaskStatus = false;
+                  task.isNew = false;
                   editedTasks.Add(task);
                   if (editedTasks.Count != 30) continue;
                   await taskProvider.EditRange(editedTasks);
@@ -68,7 +94,7 @@ namespace Helpers.ServiceHelpers
                 }
                 catch (Exception ex)
                 {
-                    task.Status = false;
+                    task.Status = Status.Rejected;
                     editedTasks.Add(task);
                 }
             }
@@ -87,10 +113,36 @@ namespace Helpers.ServiceHelpers
             return driver;
         }
         
-        
+         private static async Task<List<SimpleTask>> UpdateTaskStatus(IEnumerable<IWebElement> elements, ITaskProvider taskProvider, int siteId, Status status)
+        {
+            var tasks = new List<SimpleTask>();
+            foreach (var e in elements)
+            {
+                try
+                {
+                    var elementId = e.GetAttribute("id");
+                    var id = int.Parse(elementId.Split("block-task").Last());
+                    if (!await taskProvider.CheckByTaskId(id, siteId))
+                    {
+                        var task = await taskProvider.GetByTaskId(id, siteId);
+                        task.Status = status;
+                        //Add to list
+                        tasks.Add(task);
+                    }
+                    else 
+                        continue;
+                }
+                catch (Exception ex)
+                {
+                    continue;
+                }
+                GC.Collect();
+            }
+            return tasks;
+        }
         
         //Helper private function to parsing aviso tasks
-        private static async Task<List<SimpleTask>> ParseTasks(IEnumerable<IWebElement> elements, ITaskProvider taskProvider, int siteId, bool TaskStatus)
+        private static async Task<List<SimpleTask>> ParseTasks(IEnumerable<IWebElement> elements, ITaskProvider taskProvider, int siteId, bool isNew, Status status)
         {
             var tasks = new List<SimpleTask>();
             var count = 0;
@@ -139,12 +191,11 @@ namespace Helpers.ServiceHelpers
                             .FindElement(By.TagName("span")).Text;
                         var priceLine = priceElementText.Split(" ");
                         task.Price = float.Parse(priceLine[0]) + float.Parse(priceLine[2]) / 100;
-                        task.Status = true;
+                        task.Status = status;
                         task.SiteId = siteId;
-                        task.TaskStatus = TaskStatus;
+                        task.isNew = isNew;
                         //Add to list
                         tasks.Add(task);
-                        task.Dispose();
                     }
                     else 
                         continue;

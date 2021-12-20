@@ -40,6 +40,12 @@ namespace TaskerTasks.Controllers
         {
             await _avisoService.ParseNew();
         }
+
+        [HttpGet]
+        public async Task UpdateStatus()
+        {
+            await _avisoService.UpdateStatus();
+        }
         
         //Parse operations like subscribe, unsubscribe, complete
 
@@ -79,11 +85,16 @@ namespace TaskerTasks.Controllers
         }
         
         //Parse get to watch result of parsing
-
         [HttpGet]
         public async Task<List<SimpleTask>> Get()
         {
             return await _avisoService.GetAllTasks();
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<SimpleTask> GetByTaskId(int id)
+        {
+            return await _avisoService.GetTaskByTaskId(id);
         }
 
         [HttpGet]

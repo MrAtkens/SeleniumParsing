@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataAccess.Providers.Abstract;
 using Helpers;
 using Microsoft.Extensions.Configuration;
+using Models.Enums;
 using Models.System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -145,7 +146,7 @@ namespace Services.Business
                                 task.CheckTime = int.Parse(line.Text.Split(" ")[4].Split(".")[0]) * DateHelper.OneHour;
                         }
 
-                        task.Status = true;
+                        task.Status = Status.Available;
                         task.SiteId = _siteConfiguration.SiteId;
                         //Add to list
                         tasks.Add(task);
