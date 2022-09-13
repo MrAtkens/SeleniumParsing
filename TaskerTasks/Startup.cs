@@ -26,9 +26,9 @@ namespace TaskerTasks
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //Data base connection
+            //Data base connectionW
             services.AddDbContext<ApplicationContext>(
-            options => options.UseSqlServer(
+            options => options.UseNpgsql(
                 Configuration.GetConnectionString("DevConnection")));
             //DataAccess Providers
             services.AddScoped<ITaskProvider, EntityTaskProvider>();

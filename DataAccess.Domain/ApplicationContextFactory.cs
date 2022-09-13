@@ -18,7 +18,7 @@ namespace DataSource
             var connectionString = config.GetConnectionString("DevConnection");
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseNpgsql(connectionString);
 
             return new ApplicationContext(optionsBuilder.Options);
         }

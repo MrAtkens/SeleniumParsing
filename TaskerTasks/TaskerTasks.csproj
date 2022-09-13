@@ -5,8 +5,8 @@
 	</PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Selenium.Support" Version="4.0.1" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Selenium.Support" Version="4.4.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
