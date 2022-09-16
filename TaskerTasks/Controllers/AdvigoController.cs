@@ -36,5 +36,11 @@ namespace TaskerTasks.Controllers
             return await _advigoService.GetCount();
         }
 
+        [HttpGet]
+        public async Task BuyAvia()
+        {
+            await _advigoService.Buy();
+        }
+
     }
 }

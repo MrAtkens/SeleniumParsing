@@ -39,7 +39,33 @@ namespace Services.Business
                 SiteId = int.Parse(configurationSection.GetSection("SiteId").Value)
             };
         }
-        
+
+
+        public async Task Buy()
+        {
+            WebDriver driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory);
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl("https://aviata.kz/aviax/booking/d5dc4f0e-ae56-4c24-96ea-d4b7d3382a86/880673db-4930-4b0b-bdcb-bdbc080f3fff/");
+            //Authorization
+            driver.FindElement(By.CssSelector("#app > div > div.min-h-screen.flex.flex-col > main > div > div.mt-4.rounded-sm.shadow-md.bg-gray-200 > form > section:nth-child(1) > section > div.flex.mt-2.pr-16 > label:nth-child(1) > div > input")).SendKeys("Kaliaskar");
+            driver.FindElement(By.CssSelector("#app > div > div.min-h-screen.flex.flex-col > main > div > div.mt-4.rounded-sm.shadow-md.bg-gray-200 > form > section:nth-child(1) > section > div.flex.mt-2.pr-16 > label:nth-child(2) > div > input")).SendKeys("Raiymbek");
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[1]/section/div[2]/div/div/label[1]")).Click();
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[1]/section/div[2]/label[3]/div/input")).SendKeys("15-07-2002");
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[1]/section/div[2]/label[5]/div/input")).SendKeys("034234");
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[1]/section/div[2]/label[6]/div/input")).SendKeys("04-12-2025");
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[1]/section/div[2]/label[6]/div/input")).SendKeys("04-12-2025");
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[1]/section/div[3]/label/div/input")).SendKeys("020715551068");
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[1]/section/div[2]/label[6]/div/input")).SendKeys("04-12-2025");
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[1]/section/div[3]/div[2]/label/select/option[2]")).Click();
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[2]/div/label[2]/div/input")).SendKeys("7077227589");//(707) 722-75-89
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[2]/div/label[3]/div[2]/input")).SendKeys("r.kaliaskar@mail.ru");
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/div/section[2]/div/div/span/label/div/div")).Click();
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[4]/label/input")).Click();
+            driver.FindElement(By.Id("btnBook")).Click();
+
+            driver.FindElement(By.CssSelector("#app > div > div.min-h-screen.flex.flex-col > main > div > div > div:nth-child(2) > div:nth-child(2) > div.flex.items-center.p-6 > button")).Click();
+        }
+
         public async Task<int> GetCount()
         {
             return await _taskProvider.GetCountSiteId(_siteConfiguration.SiteId);
@@ -84,7 +110,7 @@ namespace Services.Business
             driver.Quit();
         }
         
-          private async Task<List<SimpleTask>> ParseTasks(IEnumerable<IWebElement> elements)
+        private async Task<List<SimpleTask>> ParseTasks(IEnumerable<IWebElement> elements)
         {
             var tasks = new List<SimpleTask>();
             var count = 0;
@@ -192,6 +218,7 @@ namespace Services.Business
             var navigationTasks = driver.FindElement(By.CssSelector("#submenu_standart > div > div:nth-child(1) > div > a"));
             navigationTasks.Click();
         }
+
 
     }
 }
