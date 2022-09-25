@@ -44,7 +44,7 @@ namespace Services.Business
             //Initialize webdriver and authorize 
             var driver = AvisoServiceHelper.Authorize(_siteConfiguration);
             //Navigate to footer of page count to get all in one time without get ban
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             var navigationEnd = wait.Until(e => e.FindElement(By.Id("navi-end")));
             var href = navigationEnd.GetAttribute("href");
             var pageCountSplit = href.Split("#page-");
@@ -63,9 +63,15 @@ namespace Services.Business
         public async Task ParseNew()
         {
             var driver = AvisoServiceHelper.Authorize(_siteConfiguration);
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
+            fluentWait.Timeout = TimeSpan.FromSeconds(5);
+            fluentWait.PollingInterval = TimeSpan.FromMilliseconds(250);
+            /* Ignore the exception - NoSuchElementException that indicates that the element is not present */
+            fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentWait.Message = "Element to be searched not found";
+
             //Get new tasks
-            var newTasksButton = wait.Until(e => e.FindElement(By.CssSelector(
+            var newTasksButton = fluentWait.Until(e => e.FindElement(By.CssSelector(
                 "#contentwrapper > div:nth-child(6) > a:nth-child(2)")));
             newTasksButton.Click();
             await AvisoServiceHelper.StartParseTasks(driver, 20, _siteConfiguration, _taskProvider, true, Status.Available);
