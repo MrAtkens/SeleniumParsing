@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Providers.Abstract;
@@ -36,6 +37,22 @@ namespace Helpers.ServiceHelpers
                 //Parse tasks on one page and add range(30-35 tasks)
                 var baseTasks = await ParseTasks(elements, taskProvider, siteConfiguration.SiteId, isNew, status);
                 await taskProvider.AddRange(baseTasks);
+                StreamWriter file = new("Text" + count + ".txt");
+
+                foreach (var task in baseTasks)
+                {
+                    await file.WriteLineAsync("URL: " + task.Url);
+                    await file.WriteLineAsync("TaskId: " + task.TaskId);
+                    await file.WriteLineAsync("Task type: " + task.TaskType);
+                    await file.WriteLineAsync("Description: " + task.Description);
+                    await file.WriteLineAsync("Title: " + task.Title);
+                    await file.WriteLineAsync("Price: " + task.Price);
+                    await file.WriteLineAsync("Status: " + task.Status);
+                    await file.WriteLineAsync("WorkCount: " + task.WorkCount);
+                    await file.WriteLineAsync("Creation Date: " + task.CreationDate);
+                    await file.WriteLineAsync("Site Id: " + task.SiteId);
+                }
+                file.Close();
             }
         }
         

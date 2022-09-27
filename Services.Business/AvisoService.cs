@@ -44,7 +44,7 @@ namespace Services.Business
             //Initialize webdriver and authorize 
             var driver = AvisoServiceHelper.Authorize(_siteConfiguration);
             //Navigate to footer of page count to get all in one time without get ban
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             var navigationEnd = wait.Until(e => e.FindElement(By.Id("navi-end")));
             var href = navigationEnd.GetAttribute("href");
             var pageCountSplit = href.Split("#page-");
