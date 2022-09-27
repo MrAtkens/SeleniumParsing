@@ -41,11 +41,11 @@ namespace Services.Business
         }
 
 
-        public async Task Buy()
+        public async Task Buy(string url)
         {
             WebDriver driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory);
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://aviata.kz/aviax/booking/d5dc4f0e-ae56-4c24-96ea-d4b7d3382a86/880673db-4930-4b0b-bdcb-bdbc080f3fff/");
+            driver.Navigate().GoToUrl(url);
             //Authorization
             driver.FindElement(By.CssSelector("#app > div > div.min-h-screen.flex.flex-col > main > div > div.mt-4.rounded-sm.shadow-md.bg-gray-200 > form > section:nth-child(1) > section > div.flex.mt-2.pr-16 > label:nth-child(1) > div > input")).SendKeys("Kaliaskar");
             driver.FindElement(By.CssSelector("#app > div > div.min-h-screen.flex.flex-col > main > div > div.mt-4.rounded-sm.shadow-md.bg-gray-200 > form > section:nth-child(1) > section > div.flex.mt-2.pr-16 > label:nth-child(2) > div > input")).SendKeys("Raiymbek");
@@ -62,8 +62,7 @@ namespace Services.Business
             driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/div/section[2]/div/div/span/label/div/div")).Click();
             driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div[2]/form/section[4]/label/input")).Click();
             driver.FindElement(By.Id("btnBook")).Click();
-
-            driver.FindElement(By.CssSelector("#app > div > div.min-h-screen.flex.flex-col > main > div > div > div:nth-child(2) > div:nth-child(2) > div.flex.items-center.p-6 > button")).Click();
+            driver.FindElement(By.XPath("//*[@id=\"app\"]/div/div[2]/main/div/div/div[2]/div[2]/div[2]/button")).Click();
         }
 
         public async Task<int> GetCount()

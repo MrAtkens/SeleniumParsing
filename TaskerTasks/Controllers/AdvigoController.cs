@@ -36,10 +36,10 @@ namespace TaskerTasks.Controllers
             return await _advigoService.GetCount();
         }
 
-        [HttpGet]
-        public async Task BuyAvia()
+        [HttpGet("Url")]
+        public async Task BuyAvia([FromQuery] string url)
         {
-            await _advigoService.Buy();
+            await _advigoService.Buy(url);
         }
 
     }
