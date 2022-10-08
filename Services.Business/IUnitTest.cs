@@ -6,6 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
+using log4net;
+using log4net.Config;
+using log4net.Repository;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -21,15 +25,20 @@ public class UnitTest
     private string _url;
     protected ExtentReports _extent;
     protected ExtentTest _test;
+    private ILog Log;
 
     [OneTimeSetUp]
     protected void Setup()
     {
+ 
         var path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
         var actualPath = path.Substring(0, path.LastIndexOf("bin"));
         var projectPath = new Uri(actualPath).LocalPath;
         Directory.CreateDirectory(projectPath.ToString() + "Reports");
         var reportPath = projectPath + "Reports\\ExtentReport.html";
+        ILoggerRepository loggerRepository = LogManager.CreateRepository("TestNetCore");
+        XmlConfigurator.Configure(loggerRepository, new FileInfo(projectPath + "Reports\\log4net.config"));
+        Log = LogManager.GetLogger(loggerRepository.Name, typeof(Program));
         var htmlReporter = new ExtentHtmlReporter(reportPath);
         _extent = new ExtentReports();
         _extent.AttachReporter(htmlReporter);
@@ -46,6 +55,7 @@ public class UnitTest
     public void Initialize()
     {
         _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory);
+        Log.Info("Start Driver and open Chrome");
         _driver.Manage().Window.Maximize();
         _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
         _driver.Navigate().GoToUrl(_url);
@@ -56,6 +66,7 @@ public class UnitTest
     public async Task OpenAppTest()
     {
         UnitTestPOM unitTest = new UnitTestPOM(_driver);
+        Log.Info("SetFirst name");
         unitTest.SetFirstName("Raiymbek");
         unitTest.SetLastName("Kaliaskar");
         unitTest.ChoseGender();

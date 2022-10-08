@@ -27,19 +27,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a7567ce-3638-4b82-bde2-26e6cb9df694" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Services.Business/IUnitTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/contentModel.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Configuration/log4net.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TaskerTasks/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Configuration/appsettings.CoreConfigurations.json" beforeDir="false" afterPath="$PROJECT_DIR$/Configuration/appsettings.CoreConfigurations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services.Business/AdvigoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services.Business/AdvigoService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services.Business/AvisoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services.Business/AvisoService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services.Business/IUnitTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services.Business/IUnitTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services.Business/Reports/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Services.Business/Reports/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Services.Business/Services.Business.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Services.Business/Services.Business.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskerTasks/Controllers/AdvigoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TaskerTasks/Controllers/AdvigoController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskerTasks/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/TaskerTasks/Properties/launchSettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,13 +43,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/DataAccess.Domain/ApplicationContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DataAccess.Providers/Abstract/ITaskProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TaskerTasks/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Services.Business/AdvigoService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DataAccess.Providers/EntityTaskProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Models/System/WorkingTask.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Services.Business/AdvigoService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Services.Business/AvisoService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/TaskerTasks/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/644829e036a44a0a93660e1be070cb6c5da400/c2/44a329bf/WebDriver.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DataAccess.Domain/ApplicationContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DataAccess.Providers/Abstract/ITaskProvider.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -123,18 +117,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.TaskerTasks: IIS Express">
     <configuration name="Models" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Models/Models.csproj" />
@@ -233,6 +223,7 @@
       <workItem from="1637476934155" duration="1310000" />
       <workItem from="1637479435847" duration="121000" />
       <workItem from="1664186543906" duration="3025000" />
+      <workItem from="1665240000443" duration="3003000" />
     </task>
     <servers />
   </component>
@@ -553,6 +544,175 @@
           <properties documentPath="C:\Users\rkali\RiderProjects\TaskerTasks\Services.Business\AvisoService.cs" initialLine="155" />
           <option name="timeStamp" value="220" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>33</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="36" containingFunctionPresentation="method 'Setup'">
+            <startOffsets>
+              <option value="864" />
+            </startOffsets>
+            <endOffsets>
+              <option value="932" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>34</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="37" containingFunctionPresentation="method 'Setup'">
+            <startOffsets>
+              <option value="941" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1001" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="223" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>35</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="38" containingFunctionPresentation="method 'Setup'">
+            <startOffsets>
+              <option value="1010" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1058" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="224" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>36</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="39" containingFunctionPresentation="method 'Setup'">
+            <startOffsets>
+              <option value="1067" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1129" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="225" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>57</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="57" containingFunctionPresentation="method 'Initialize'">
+            <startOffsets>
+              <option value="1989" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2030" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="228" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>58</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="58" containingFunctionPresentation="method 'Initialize'">
+            <startOffsets>
+              <option value="2039" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2074" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="229" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>60</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="60" containingFunctionPresentation="method 'Initialize'">
+            <startOffsets>
+              <option value="2157" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2190" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="230" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>59</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="59" containingFunctionPresentation="method 'Initialize'">
+            <startOffsets>
+              <option value="2083" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2148" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="231" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>37</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="37" containingFunctionPresentation="method 'Setup'">
+            <startOffsets>
+              <option value="1138" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1198" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="232" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>38</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="38" containingFunctionPresentation="method 'Setup'">
+            <startOffsets>
+              <option value="1207" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1287" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="233" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>39</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="39" containingFunctionPresentation="method 'Setup'">
+            <startOffsets>
+              <option value="1296" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1395" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>40</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="40" containingFunctionPresentation="method 'Setup'">
+            <startOffsets>
+              <option value="1404" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1471" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="235" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Services.Business/IUnitTest.cs</url>
+          <line>41</line>
+          <properties documentPath="C:\Users\rkali\RiderProjects\SeleniumParsing\Services.Business\IUnitTest.cs" initialLine="41" containingFunctionPresentation="method 'Setup'">
+            <startOffsets>
+              <option value="1480" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1534" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="236" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
@@ -560,6 +720,7 @@
         <PinnedItemInfo parentTag="Type#System.Net.Http.HttpResponseMessage" memberName="_content" />
         <PinnedItemInfo parentTag="Type#System.Net.Http.Headers.HttpHeaders" memberName="_headerStore" />
         <PinnedItemInfo parentTag="Type#System.Collections.Generic.KeyValuePair`2" memberName="Value" />
+        <PinnedItemInfo parentTag="Type#log4net.Appender.AppenderCollection+ReadOnlyAppenderCollection" memberName="Count" />
         <PinnedItemInfo parentTag="Type#System.Net.Http.HttpConnectionResponseContent" memberName="_stream" />
         <PinnedItemInfo parentTag="Type#Models.System.SiteConfiguration" memberName="Url" />
       </pinned-members>
